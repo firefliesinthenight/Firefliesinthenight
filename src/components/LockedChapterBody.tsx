@@ -90,7 +90,7 @@ export default function LockedChapterBody({
         className="mt-8 flex max-w-sm flex-col gap-3 rounded-xl border border-night-600/50 bg-night-800/40 p-6"
       >
         <p className="font-body text-sm text-cream-200">
-          This chapter is part of a private family memoir. Enter the key to keep reading.
+          This chapter is part of Abrar's Memoir, kept private. Enter the key to keep reading.
         </p>
         <input
           type="password"

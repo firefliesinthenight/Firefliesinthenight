@@ -39,19 +39,19 @@ export default function SiteHeader() {
       }`}
     >
       <Container
-        className={`flex h-20 items-center justify-between transition-[height] duration-300 sm:h-24 ${
-          scrolled ? "lg:h-24" : "lg:h-30"
+        className={`flex h-24 items-center justify-between transition-[height] duration-300 sm:h-28 ${
+          scrolled ? "lg:h-28" : "lg:h-36"
         }`}
       >
         <Link href="/" aria-label="Fireflies in the Night — home" className="shrink-0">
           <Image
             src="/images/fireflies-logo-badge.png"
             alt="Fireflies in the Night"
-            width={480}
-            height={480}
+            width={720}
+            height={720}
             priority
-            className={`h-16 w-auto transition-[height] duration-300 sm:h-20 ${
-              scrolled ? "lg:h-20" : "lg:h-28"
+            className={`h-20 w-auto transition-[height] duration-300 sm:h-24 ${
+              scrolled ? "lg:h-24" : "lg:h-34"
             }`}
           />
         </Link>

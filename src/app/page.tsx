@@ -8,7 +8,7 @@ import CompletePoem from "@/components/CompletePoem";
 import FeaturedNow from "@/components/FeaturedNow";
 
 const heroLine =
-  "Essays, a family memoir, and the history of one community — written down before it's forgotten.";
+  "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
 
 const aboutTeaser =
   "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
@@ -16,7 +16,7 @@ const aboutTeaser =
 export default function Home() {
   return (
     <>
-      <section className="relative -mt-20 flex h-[70vh] min-h-110 w-full items-end overflow-hidden sm:-mt-24 lg:-mt-30 sm:h-[85vh] sm:min-h-140">
+      <section className="relative -mt-24 flex h-[70vh] min-h-110 w-full items-end overflow-hidden sm:-mt-28 lg:-mt-36 sm:h-[85vh] sm:min-h-140">
         <Image
           src="/images/fireflies-bg1.png"
           alt="A lantern-lit writing desk at an open window overlooking a starlit forest and mountains, with keepsake books, a photo, and fireflies glowing in the dark"
@@ -47,7 +47,7 @@ export default function Home() {
       <Container className="flex flex-col gap-10 py-14 sm:gap-14 sm:py-20">
         <FeaturedNow
           title="Buyahka & Abrar"
-          description="The complete family memoir — finished, and free to read online. If you start with one thing on this site, start here."
+          description="The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here."
           ctaLabel="Read the memoir"
           ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
         />
@@ -76,7 +76,7 @@ export default function Home() {
               flagship
               label="The memoir"
               title="Buyahka & Abrar"
-              description="The complete family memoir — finished, and free to read online."
+              description="The complete Abrar's Memoir — finished, and free to read online."
               ctaLabel="Read the memoir"
               ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
             />

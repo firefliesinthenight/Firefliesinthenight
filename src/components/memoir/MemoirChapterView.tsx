@@ -430,7 +430,7 @@ export default function MemoirChapterView({
             }}
           >
             <p style={{ fontStyle: "italic", color: "var(--mc-ink-soft, #ada290)" }}>
-              This is a private family memoir. Enter the key to keep reading.
+              This is Abrar's Memoir, kept private. Enter the key to keep reading.
             </p>
             <input
               type="password"

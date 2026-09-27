@@ -35,14 +35,14 @@ export const metadata: Metadata = {
     template: "%s — Fireflies in the Night",
   },
   description:
-    "Essays, a family memoir, and the history of one community — written down before it's forgotten.",
+    "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
   icons: {
     icon: "/images/fireflies-logo-icon.png",
   },
   openGraph: {
     title: "Fireflies in the Night",
     description:
-      "Essays, a family memoir, and the history of one community — written down before it's forgotten.",
+      "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
     siteName: "Fireflies in the Night",
     type: "website",
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fireflies in the Night",
     description:
-      "Essays, a family memoir, and the history of one community — written down before it's forgotten.",
+      "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
   },
 };
 

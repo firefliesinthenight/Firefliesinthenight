@@ -22,7 +22,7 @@ export default function SittingWithBuyahkaPage() {
           flagship
           label="The memoir"
           title="Buyahka & Abrar"
-          description="The complete family memoir — finished, and free to read online."
+          description="The complete Abrar's Memoir — finished, and free to read online."
           ctaLabel="Read the memoir"
           ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
         />

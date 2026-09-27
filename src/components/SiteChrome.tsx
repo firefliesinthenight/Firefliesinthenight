@@ -26,7 +26,7 @@ export function MainPaddingGate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const immersive = IMMERSIVE_PATTERN.test(pathname);
   return (
-    <main id="main-content" className={immersive ? "flex-1" : "flex-1 pt-20 sm:pt-24 lg:pt-30"}>
+    <main id="main-content" className={immersive ? "flex-1" : "flex-1 pt-24 sm:pt-28 lg:pt-36"}>
       {children}
     </main>
   );

@@ -9,7 +9,7 @@ export default function SiteFooter() {
         <div>
           <p className="font-display text-lg text-cream-100">Fireflies in the Night</p>
           <p className="mt-1 font-body text-sm text-cream-300">
-            Essays, a family memoir, and the history of one community.
+            Essays, Abrar's Memoir, and the history of one community.
           </p>
         </div>
         <nav aria-label="Footer">
