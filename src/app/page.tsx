@@ -62,8 +62,9 @@ export default function Home() {
               label="Featured essay"
               title="Movement Was My Oxygen"
               description="The opening essay — where this collection starts."
-              ctaLabel="Read the essay"
+              ctaLabel="Visual Essays"
               ctaHref="/in-search-of-beauty/movement-was-my-oxygen"
+              note="Personal reflections, stories and ideas."
             />
           </SectionCard>
 

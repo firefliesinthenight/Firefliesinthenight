@@ -6,6 +6,7 @@ export default function PieceCallout({
   description,
   ctaLabel,
   ctaHref,
+  note,
   flagship = false,
 }: {
   label: string;
@@ -13,6 +14,9 @@ export default function PieceCallout({
   description: string;
   ctaLabel: string;
   ctaHref: string;
+  // Small caption under the CTA button — e.g. a one-line gloss on where the
+  // button leads. Optional; most callouts don't need it.
+  note?: string;
   flagship?: boolean;
 }) {
   return (
@@ -31,6 +35,7 @@ export default function PieceCallout({
       <div className="mt-4">
         <CtaLink href={ctaHref}>{ctaLabel}</CtaLink>
       </div>
+      {note && <p className="mt-3 font-body text-sm text-cream-300/80">{note}</p>}
     </div>
   );
 }
