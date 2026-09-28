@@ -669,6 +669,39 @@
   color: var(--mc-ink);
 }
 
+/* Back button — pinned top-left so a reader can leave the chapter from
+   anywhere, not just from the nav at the very bottom. Sits under the
+   lightbox (9999) so it never covers an open image or video. */
+.memoir-chapter .mc-back {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1.05rem 0.5rem 0.85rem;
+  border: 1px solid rgba(212, 164, 74, 0.5);
+  border-radius: 999px;
+  background: rgba(10, 9, 7, 0.72);
+  backdrop-filter: blur(8px);
+  color: var(--mc-accent);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background 0.2s, border-color 0.2s;
+}
+.memoir-chapter .mc-back:hover {
+  background: rgba(212, 164, 74, 0.16);
+  border-color: var(--mc-accent);
+}
+.memoir-chapter .mc-back:focus-visible {
+  outline: 2px solid var(--mc-accent);
+  outline-offset: 3px;
+}
+
 .memoir-chapter .mc-chapter-nav {
   margin: 4rem auto 2rem;
   max-width: 900px;

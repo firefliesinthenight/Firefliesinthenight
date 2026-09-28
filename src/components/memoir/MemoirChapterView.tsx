@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import type { MediaRef, MemoirBlock, ProseLine } from "@/lib/memoirBlocks";
 import { getSignedChapterMedia } from "@/app/sitting-with-buyahka/buyahka-and-abrar/media-actions";
@@ -10,6 +11,20 @@ const SESSION_KEY = "memoir-key";
 
 type LightboxState = { kind: "image" | "video"; src: string; caption: string } | null;
 type MediaUrlMap = Record<string, string>;
+
+// The chapter pages drop the site header, so this is the reader's way out at
+// any point — pinned to the corner, and shown on the unlock screen too.
+function BackButton() {
+  return (
+    <Link
+      href="/sitting-with-buyahka/buyahka-and-abrar"
+      className="mc-back"
+      aria-label="Back to the table of contents"
+    >
+      <span aria-hidden="true">&larr;</span> Back
+    </Link>
+  );
+}
 
 function collectMediaRefs(blocks: MemoirBlock[]): MediaRef[] {
   const refs: MediaRef[] = [];
@@ -414,6 +429,7 @@ export default function MemoirChapterView({
   if (!mediaUrls) {
     return (
       <div className="memoir-chapter">
+        <BackButton />
         <div style={{ minHeight: "70vh", display: "grid", placeItems: "center", padding: "2rem" }}>
           <form
             onSubmit={handleSubmit}
@@ -430,7 +446,7 @@ export default function MemoirChapterView({
             }}
           >
             <p style={{ fontStyle: "italic", color: "var(--mc-ink-soft, #ada290)" }}>
-              This is Abrar's Memoir, kept private. Enter the key to keep reading.
+              This is Abrar&apos;s Memoir, kept private. Enter the key to keep reading.
             </p>
             <input
               type="password"
@@ -470,6 +486,7 @@ export default function MemoirChapterView({
 
   return (
     <div className="memoir-chapter">
+      <BackButton />
       {blocks.map((block, i) => (
         <Block key={i} block={block} mediaUrls={mediaUrls} onOpenLightbox={setLightbox} />
       ))}
