@@ -5,7 +5,9 @@
 // ridgelines, and cloud texture without introducing halos on the already-
 // sharp foreground desk objects.
 //
-// Re-run this whenever fireflies-bg1.png is replaced with a new source photo:
+// Only for a SOFT source photo. The current hero (Ahmad's new-fireflies.png,
+// 28 Sep) was supplied already crisp, so it is used as-is — do NOT run this
+// on it, that would sharpen it twice.
 //   node scripts/sharpen-hero.mjs [source.png] [out.png]
 
 import sharp from "sharp";
