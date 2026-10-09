@@ -137,6 +137,7 @@ export default function MovementWasMyOxygenPage() {
           episodeLabel="Through the Storms — Episode 03"
           title="Movement Was My Oxygen"
           videoUrl={null}
+          youtubeId="4pZ2X87npEE"
         />
 
         <div className="mt-10 flex max-w-prose flex-col gap-5 font-body text-lg leading-loose text-cream-200">
