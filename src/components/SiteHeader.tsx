@@ -70,7 +70,7 @@ export default function SiteHeader() {
                     <Link
                       href={link.href}
                       aria-current={active ? "page" : undefined}
-                      className={`group flex flex-col items-center px-5 font-nav text-[13px] font-medium uppercase leading-[1.4] tracking-[0.16em] transition-colors [text-shadow:0_1px_10px_rgba(0,0,0,0.7)] ${
+                      className={`group flex flex-col items-center px-2.5 font-nav text-[13px] font-medium uppercase leading-[1.4] tracking-[0.16em] transition-colors [text-shadow:0_1px_10px_rgba(0,0,0,0.7)] xl:px-5 ${
                         active ? "text-gold-300" : "text-cream-100 hover:text-gold-300"
                       }`}
                     >

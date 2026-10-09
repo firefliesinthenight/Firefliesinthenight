@@ -11,6 +11,7 @@ export type NavLink = {
 // here — it is surfaced instead via featured cards on the homepage and on
 // /sitting-with-buyahka.
 export const navLinks: NavLink[] = [
+  { label: "Latest", href: "/latest" },
   { label: "In Search of Beauty", href: "/in-search-of-beauty", lines: ["In Search", "of Beauty"] },
   { label: "Sitting with Buyahka", href: "/sitting-with-buyahka", lines: ["Sitting with", "Buyahka"] },
   { label: "Community", href: "/community" },

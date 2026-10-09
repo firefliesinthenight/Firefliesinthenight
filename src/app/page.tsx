@@ -6,9 +6,12 @@ import PieceCallout from "@/components/PieceCallout";
 import CtaLink from "@/components/CtaLink";
 import CompletePoem from "@/components/CompletePoem";
 import FeaturedNow from "@/components/FeaturedNow";
+import { releases } from "@/lib/releases";
 
 const heroLine =
   "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
+
+const currentRelease = releases[0];
 
 const aboutTeaser =
   "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
@@ -84,7 +87,28 @@ export default function Home() {
           </SectionCard>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
+          {currentRelease && (
+            <SectionCard
+              size="sm"
+              title="Latest"
+              href="/latest"
+              intro="New releases and work in progress — posted here as they're ready."
+            >
+              <div className="border-t border-night-600/50 pt-4 text-sm">
+                <p className="text-cream-200">
+                  <span className="font-semibold text-gold-300">Current release — </span>
+                  {currentRelease.title}
+                </p>
+                <div className="mt-3">
+                  <CtaLink href="/latest" variant="outline">
+                    Watch now
+                  </CtaLink>
+                </div>
+              </div>
+            </SectionCard>
+          )}
+
           <SectionCard
             size="sm"
             title="Community"

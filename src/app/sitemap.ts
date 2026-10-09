@@ -5,6 +5,7 @@ const baseUrl = "https://fireflies-in-the-night.vercel.app";
 
 const routes = [
   "",
+  "/latest",
   "/in-search-of-beauty",
   "/in-search-of-beauty/movement-was-my-oxygen",
   "/sitting-with-buyahka",
