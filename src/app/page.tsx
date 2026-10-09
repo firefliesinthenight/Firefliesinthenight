@@ -5,13 +5,47 @@ import SectionCard from "@/components/SectionCard";
 import PieceCallout from "@/components/PieceCallout";
 import CtaLink from "@/components/CtaLink";
 import CompletePoem from "@/components/CompletePoem";
-import FeaturedNow from "@/components/FeaturedNow";
+import FeaturedCarousel, { type FeaturedSlide } from "@/components/FeaturedCarousel";
 import { releases } from "@/lib/releases";
 
 const heroLine =
   "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
 
 const currentRelease = releases[0];
+
+// What's happening on the site right now — the homepage's rotating
+// spotlight. Leads with the memoir (the flagship, and what a no-JS/first
+// paint shows), then whatever's newest. Add a slide here for anything else
+// worth surfacing this way (a new essay, a community piece, ...).
+const featuredSlides: FeaturedSlide[] = [
+  {
+    eyebrow: "Featured Now",
+    title: "Buyahka & Abrar",
+    description:
+      "The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here.",
+    ctaLabel: "Read the memoir",
+    ctaHref: "/sitting-with-buyahka/buyahka-and-abrar",
+  },
+  ...(currentRelease
+    ? [
+        {
+          eyebrow: "New Release",
+          title: currentRelease.title,
+          description: "Ahmad's latest release — watch the video now.",
+          ctaLabel: "Watch now",
+          ctaHref: "/latest",
+        } satisfies FeaturedSlide,
+      ]
+    : []),
+  {
+    eyebrow: "New Episode",
+    title: "Through the Storms — Episode 03",
+    description:
+      "“Movement Was My Oxygen,” on video — the companion piece to the essay.",
+    ctaLabel: "Watch the episode",
+    ctaHref: "/in-search-of-beauty/movement-was-my-oxygen",
+  },
+];
 
 const aboutTeaser =
   "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
@@ -48,12 +82,7 @@ export default function Home() {
       <CompletePoem />
 
       <Container className="flex flex-col gap-10 py-14 sm:gap-14 sm:py-20">
-        <FeaturedNow
-          title="Buyahka & Abrar"
-          description="The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here."
-          ctaLabel="Read the memoir"
-          ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
-        />
+        <FeaturedCarousel slides={featuredSlides} />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 sm:gap-8">
           <SectionCard
