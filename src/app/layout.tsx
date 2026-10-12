@@ -29,7 +29,7 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fireflies-in-the-night.vercel.app"),
+  metadataBase: new URL("https://firefliesinthenight.com"),
   title: {
     default: "Fireflies in the Night",
     template: "%s — Fireflies in the Night",
