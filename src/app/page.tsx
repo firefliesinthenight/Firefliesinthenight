@@ -6,33 +6,33 @@ import PieceCallout from "@/components/PieceCallout";
 import CtaLink from "@/components/CtaLink";
 import CompletePoem from "@/components/CompletePoem";
 import FeaturedCarousel, { type FeaturedSlide } from "@/components/FeaturedCarousel";
-import { releases } from "@/lib/releases";
+import { getReleases, type Release } from "@/lib/releases";
 import { mediumBio } from "@/lib/bios";
 
 const heroLine =
   "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
 
-const currentRelease = releases[0];
+// Recomputed at most hourly, so a song flips from "Pre-save" to "Listen now"
+// on its release day without a new deploy (see getReleases).
+export const revalidate = 3600;
 
-// What's happening on the site right now — the homepage's rotating
-// spotlight (the first slide is what a no-JS/first paint shows). Add a slide
-// here for anything else worth surfacing this way (a new essay, ...).
-const releaseSlides: FeaturedSlide[] = [
-  ...(currentRelease
-    ? [
-        {
-          eyebrow: currentRelease.status === "upcoming" ? "New Song" : "New Release",
-          title: currentRelease.title,
-          description:
-            currentRelease.status === "upcoming"
-              ? `${currentRelease.dateLabel.replace("New song · ", "Out ")}. Pre-save it now.`
-              : "Ahmad's latest release — watch the video now.",
-          ctaLabel: currentRelease.status === "upcoming" ? "Pre-save" : "Listen now",
-          ctaHref: "/music",
-        } satisfies FeaturedSlide,
-      ]
-    : []),
-];
+function releaseSlidesFor(currentRelease: Release | undefined): FeaturedSlide[] {
+  if (!currentRelease) return [];
+  const upcoming = currentRelease.status === "upcoming";
+  return [
+    {
+      eyebrow: upcoming ? "New Song" : "Out Now",
+      title: currentRelease.title,
+      description: upcoming
+        ? `${currentRelease.dateLabel.replace("New song · ", "Out ")}. Pre-save it now.`
+        : currentRelease.kind === "song"
+          ? "Out now on Spotify, Apple Music and everywhere you listen."
+          : "Ahmad's latest release — watch the video now.",
+      ctaLabel: upcoming ? "Pre-save" : "Listen now",
+      ctaHref: "/music",
+    },
+  ];
+}
 
 // Abrar's Memoir is private (key required), so it is no longer promoted in
 // the Featured Now carousel; it lives in a side panel on Sitting with Buyahka.
@@ -57,14 +57,16 @@ const introSlide: FeaturedSlide = {
   ctaHref: "/latest",
 };
 
-const featuredSlides: FeaturedSlide[] =
-  currentRelease?.status === "upcoming"
-    ? [...releaseSlides, introSlide, episodeSlide]
-    : [...releaseSlides, introSlide, episodeSlide];
 
 const aboutTeaser = mediumBio[0];
 
 export default function Home() {
+  const currentRelease = getReleases()[0];
+  const featuredSlides: FeaturedSlide[] = [
+    ...releaseSlidesFor(currentRelease),
+    introSlide,
+    episodeSlide,
+  ];
   return (
     <>
       <section className="relative -mt-24 flex h-[70vh] min-h-110 w-full items-end overflow-hidden sm:-mt-28 lg:-mt-36 sm:h-[85vh] sm:min-h-140">
@@ -146,7 +148,7 @@ export default function Home() {
                 </p>
                 <div className="mt-3">
                   <CtaLink href="/latest" variant="outline">
-                    {currentRelease.status === "upcoming" ? "Pre-save" : "Watch now"}
+                    {currentRelease.status === "upcoming" ? "Pre-save" : "Listen now"}
                   </CtaLink>
                 </div>
               </div>

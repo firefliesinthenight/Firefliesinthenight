@@ -24,18 +24,25 @@ export type Release = {
   cover?: string;
   description?: string;
   links: { label: string; href: string }[];
+  // Songs with a releaseDate switch themselves from "upcoming" to "released"
+  // at that moment (US Eastern midnight), and pick up `afterRelease` — so
+  // "Pre-save" becomes "Listen now" on release day without a new deploy.
+  // Pages that read releases revalidate hourly (see getReleases callers).
+  releaseDate?: string;
+  afterRelease?: Partial<Pick<Release, "dateLabel" | "description" | "links">>;
 };
 
-// Two Cups of Tea is listed first on purpose: it's the release launch week
-// is pointing people to, so the homepage spotlight and /latest lead with it.
-// After Oct 16, flip its status to "released", add its youtubeId and the
-// real streaming links, and move Beauty in the Fade to the top the following week.
-export const releases: Release[] = [
+// Order is computed by getReleases(): the newest song that is out leads;
+// before any dated song is out, the soonest upcoming one leads. So Two Cups
+// of Tea leads until Oct 23, then Beauty in the Fade takes the top spot.
+// Once a song's YouTube video exists, add its youtubeId here.
+const allReleases: Release[] = [
   {
     slug: "two-cups-of-tea",
     kind: "song",
     title: "Two Cups of Tea",
     status: "upcoming",
+    releaseDate: "2026-10-16T00:00:00-04:00",
     dateLabel: "New song · Friday, October 16, 2026",
     cover: "/images/releases/two-cups-of-tea.jpg",
     description:
@@ -46,12 +53,23 @@ export const releases: Release[] = [
         href: "https://distrokid.com/hyperfollow/ahmadabrar/two-cups-of-tea",
       },
     ],
+    afterRelease: {
+      dateLabel: "New song · Out now · October 16, 2026",
+      description: "The first Fireflies in the Night song. Out now on Spotify, Apple Music and everywhere you listen.",
+      links: [
+        {
+          label: "Listen now",
+          href: "https://distrokid.com/hyperfollow/ahmadabrar/two-cups-of-tea",
+        },
+      ],
+    },
   },
   {
     slug: "beauty-in-the-fade",
     kind: "song",
     title: "Beauty in the Fade",
     status: "upcoming",
+    releaseDate: "2026-10-23T00:00:00-04:00",
     dateLabel: "New song · Friday, October 23, 2026",
     cover: "/images/releases/beauty-in-the-fade.jpg",
     links: [
@@ -60,6 +78,15 @@ export const releases: Release[] = [
         href: "https://distrokid.com/hyperfollow/ahmadabrar/beauty-in-the-fade",
       },
     ],
+    afterRelease: {
+      dateLabel: "New song · Out now · October 23, 2026",
+      links: [
+        {
+          label: "Listen now",
+          href: "https://distrokid.com/hyperfollow/ahmadabrar/beauty-in-the-fade",
+        },
+      ],
+    },
   },
   {
     slug: "introduction",
@@ -83,4 +110,24 @@ export const releases: Release[] = [
   },
 ];
 
-export const songs = releases.filter((r) => r.kind === "song");
+function resolve(r: Release, now: number): Release {
+  const { afterRelease, ...base } = r;
+  if (!r.releaseDate) return base;
+  const out = now >= Date.parse(r.releaseDate);
+  return out ? { ...base, ...afterRelease, status: "released" } : { ...base, status: "upcoming" };
+}
+
+// Newest-out dated release first, then upcoming (soonest first), then the
+// undated entries in the order written above.
+export function getReleases(now: number = Date.now()): Release[] {
+  const resolved = allReleases.map((r) => resolve(r, now));
+  const t = (r: Release) => Date.parse(r.releaseDate as string);
+  const datedOut = resolved.filter((r) => r.releaseDate && r.status === "released").sort((a, b) => t(b) - t(a));
+  const upcoming = resolved.filter((r) => r.releaseDate && r.status === "upcoming").sort((a, b) => t(a) - t(b));
+  const undated = resolved.filter((r) => !r.releaseDate);
+  return [...datedOut, ...upcoming, ...undated];
+}
+
+export function getSongs(now: number = Date.now()): Release[] {
+  return getReleases(now).filter((r) => r.kind === "song");
+}

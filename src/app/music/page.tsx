@@ -3,7 +3,7 @@ import Container from "@/components/Container";
 import PageIntro from "@/components/PageIntro";
 import ReleaseCarousel from "@/components/ReleaseCarousel";
 import ShareButton from "@/components/ShareButton";
-import { songs } from "@/lib/releases";
+import { getSongs } from "@/lib/releases";
 
 export const metadata: Metadata = {
   title: "Music",
@@ -14,7 +14,10 @@ export const metadata: Metadata = {
 // Songs only, kept apart from the essays and reflections so someone who came
 // for the music finds it in one place. Videos (the intro, the shorts) live on
 // /latest; songs appear in both.
+export const revalidate = 3600;
+
 export default function MusicPage() {
+  const songs = getSongs();
   return (
     <Container className="py-14 sm:py-20">
       <PageIntro
