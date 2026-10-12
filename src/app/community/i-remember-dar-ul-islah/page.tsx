@@ -27,7 +27,7 @@ const paragraphs = [
   "My father was not the man with the pen. Dr. Khalid Beg signed the first check.",
   "My father was the momentum. The force that got things moving. The phone calls in the evening. The drives to look at lots before anyone else had seen them.",
   "He had done it before. In Corona, Queens, he helped get Masjid al-Falah started. Then the family moved to Teaneck, and he did it again. Rinse and repeat.",
-  "At ten, I thought all fathers were like that.",
+  "As a boy, I thought all fathers were like that.",
   "It took me twenty years, and my own attempts at building, to understand how rare it is. And how much rarer it is to do it without bitterness.",
   "## What a boy sees",
   "I remember a small lot with a hut on it, and an old woman's garden behind it. Neat rows of vegetables. She met us at the door. She had agreed to sell.",
