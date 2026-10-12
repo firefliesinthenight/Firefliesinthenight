@@ -29,20 +29,20 @@ const cinzel = Cinzel({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://fireflies-in-the-night.vercel.app"),
+  metadataBase: new URL("https://firefliesinthenight.com"),
   title: {
     default: "Fireflies in the Night",
     template: "%s — Fireflies in the Night",
   },
   description:
-    "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
+    "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
   icons: {
-    icon: "/images/fireflies-logo-icon.png",
+    icon: "/images/fireflies-logo-crescent-icon.png",
   },
   openGraph: {
     title: "Fireflies in the Night",
     description:
-      "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
+      "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
     siteName: "Fireflies in the Night",
     type: "website",
   },
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Fireflies in the Night",
     description:
-      "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
+      "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
   },
 };
 

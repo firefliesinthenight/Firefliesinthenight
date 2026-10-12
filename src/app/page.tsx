@@ -6,51 +6,67 @@ import PieceCallout from "@/components/PieceCallout";
 import CtaLink from "@/components/CtaLink";
 import CompletePoem from "@/components/CompletePoem";
 import FeaturedCarousel, { type FeaturedSlide } from "@/components/FeaturedCarousel";
-import { releases } from "@/lib/releases";
+import { getReleases, type Release } from "@/lib/releases";
+import { mediumBio } from "@/lib/bios";
 
 const heroLine =
-  "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
+  "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
 
-const currentRelease = releases[0];
+// Recomputed at most hourly, so a song flips from "Pre-save" to "Listen now"
+// on its release day without a new deploy (see getReleases).
+export const revalidate = 3600;
 
-// What's happening on the site right now — the homepage's rotating
-// spotlight. Leads with the memoir (the flagship, and what a no-JS/first
-// paint shows), then whatever's newest. Add a slide here for anything else
-// worth surfacing this way (a new essay, a community piece, ...).
-const featuredSlides: FeaturedSlide[] = [
-  {
-    eyebrow: "Featured Now",
-    title: "Buyahka & Abrar",
-    description:
-      "The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here.",
-    ctaLabel: "Read the memoir",
-    ctaHref: "/sitting-with-buyahka/buyahka-and-abrar",
-  },
-  ...(currentRelease
-    ? [
-        {
-          eyebrow: "New Release",
-          title: currentRelease.title,
-          description: "Ahmad's latest release — watch the video now.",
-          ctaLabel: "Watch now",
-          ctaHref: "/latest",
-        } satisfies FeaturedSlide,
-      ]
-    : []),
-  {
-    eyebrow: "New Episode",
-    title: "Through the Storms — Episode 03",
-    description:
-      "“Movement Was My Oxygen,” on video — the companion piece to the essay.",
-    ctaLabel: "Watch the episode",
-    ctaHref: "/in-search-of-beauty/movement-was-my-oxygen",
-  },
-];
+function releaseSlidesFor(currentRelease: Release | undefined): FeaturedSlide[] {
+  if (!currentRelease) return [];
+  const upcoming = currentRelease.status === "upcoming";
+  return [
+    {
+      eyebrow: upcoming ? "New Song" : "Out Now",
+      title: currentRelease.title,
+      description: upcoming
+        ? `${currentRelease.dateLabel.replace("New song · ", "Out ")}. Pre-save it now.`
+        : currentRelease.kind === "song"
+          ? "Out now on Spotify, Apple Music and everywhere you listen."
+          : "Ahmad's latest release — watch the video now.",
+      ctaLabel: upcoming ? "Pre-save" : "Listen now",
+      ctaHref: "/music",
+    },
+  ];
+}
 
-const aboutTeaser =
-  "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
+// Abrar's Memoir is private (key required), so it is no longer promoted in
+// the Featured Now carousel; it lives in a side panel on Sitting with Buyahka.
+
+const episodeSlide: FeaturedSlide = {
+  eyebrow: "New Episode",
+  title: "Through the Storms — Episode 03",
+  description:
+    "“Movement Was My Oxygen,” on video — the companion piece to the essay.",
+  ctaLabel: "Watch the episode",
+  ctaHref: "/in-search-of-beauty/movement-was-my-oxygen",
+};
+
+// While a song is upcoming (launch week), it leads the spotlight — that is
+// what people arriving from social posts are looking for. Otherwise the
+// memoir leads, as before.
+const introSlide: FeaturedSlide = {
+  eyebrow: "Start Here",
+  title: "I've Never Grabbed the Microphone",
+  description: "Ahmad introduces Fireflies in the Night: the unofficial record, the Last Poets, and why now.",
+  ctaLabel: "Watch the introduction",
+  ctaHref: "/latest",
+};
+
+
+const aboutTeaser = mediumBio[0];
 
 export default function Home() {
+  const currentRelease = getReleases()[0];
+  const featuredSlides: FeaturedSlide[] = [
+    ...releaseSlidesFor(currentRelease),
+    introSlide,
+    episodeSlide,
+  ];
   return (
     <>
       <section className="relative -mt-24 flex h-[70vh] min-h-110 w-full items-end overflow-hidden sm:-mt-28 lg:-mt-36 sm:h-[85vh] sm:min-h-140">
@@ -106,12 +122,11 @@ export default function Home() {
             intro="Faith examined honestly — where it's inherited, where it's chosen, and what it produces when it's tested."
           >
             <PieceCallout
-              flagship
-              label="The memoir"
-              title="Buyahka & Abrar"
-              description="The complete Abrar's Memoir — finished, and free to read online."
-              ctaLabel="Read the memoir"
-              ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
+              label="Essay"
+              title="Critical Thinking Did Not Weaken My Faith"
+              description="On questioning belief without losing it."
+              ctaLabel="Read the piece"
+              ctaHref="/sitting-with-buyahka/critical-thinking-did-not-weaken-my-faith"
             />
           </SectionCard>
         </div>
@@ -126,12 +141,14 @@ export default function Home() {
             >
               <div className="border-t border-night-600/50 pt-4 text-sm">
                 <p className="text-cream-200">
-                  <span className="font-semibold text-gold-300">Current release — </span>
+                  <span className="font-semibold text-gold-300">
+                    {currentRelease.status === "upcoming" ? "Coming soon — " : "Current release — "}
+                  </span>
                   {currentRelease.title}
                 </p>
                 <div className="mt-3">
                   <CtaLink href="/latest" variant="outline">
-                    Watch now
+                    {currentRelease.status === "upcoming" ? "Pre-save" : "Listen now"}
                   </CtaLink>
                 </div>
               </div>

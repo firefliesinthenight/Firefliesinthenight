@@ -8,7 +8,7 @@ import { chapters, parts } from "@/lib/memoir";
 
 export const metadata: Metadata = {
   title: "Buyahka & Abrar",
-  description: "The complete Abrar's Memoir — finished, and free to read online.",
+  description: "Abrar's Memoir — finished, and kept private. Readers need a key from Ahmad.",
 };
 
 export default function BuyahkaAndAbrarPage() {
@@ -21,7 +21,7 @@ export default function BuyahkaAndAbrarPage() {
           Buyahka & Abrar
         </h1>
         <p className="mt-3 font-body text-lg italic text-cream-300">
-          The complete Abrar's Memoir — finished, and free to read online.
+          Abrar's Memoir — finished, and kept private. Each chapter asks for a key; ask Ahmad if you'd like to read it.
         </p>
         <p className="mt-3 font-body text-sm text-cream-300/70">
           Twelve chapters, across four parts.

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { navLinks } from "@/lib/nav";
+import { socialLinks } from "@/lib/social";
 import Container from "./Container";
 
 export default function SiteFooter() {
@@ -9,8 +10,22 @@ export default function SiteFooter() {
         <div>
           <p className="font-display text-lg text-cream-100">Fireflies in the Night</p>
           <p className="mt-1 font-body text-sm text-cream-300">
-            Essays, Abrar's Memoir, and the history of one community.
+            Essays, songs, Abrar&apos;s Memoir, and the history of one community.
           </p>
+          <ul aria-label="Follow Fireflies in the Night" className="mt-4 flex flex-wrap gap-2">
+            {socialLinks.map((s) => (
+              <li key={s.href}>
+                <a
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center rounded-full border border-gold-400/50 px-3 py-1 text-xs font-semibold text-gold-300 transition-colors hover:border-gold-300 hover:text-gold-200"
+                >
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
         <nav aria-label="Footer">
           <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
