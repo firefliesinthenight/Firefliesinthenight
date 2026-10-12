@@ -43,17 +43,35 @@ export default function SiteHeader() {
           scrolled ? "lg:h-28" : "lg:h-36"
         }`}
       >
-        <Link href="/" aria-label="Fireflies in the Night — home" className="shrink-0">
+        <Link
+          href="/"
+          aria-label="Fireflies in the Night — home"
+          className="flex shrink-0 items-center gap-3 [text-shadow:0_1px_10px_rgba(0,0,0,0.7)]"
+        >
+          {/* Approved crescent logo (same mark as every video end card), with the
+              wordmark set in type so it stays legible at header size. */}
           <Image
-            src="/images/fireflies-logo-badge.png"
-            alt="Fireflies in the Night"
-            width={720}
-            height={720}
+            src="/images/fireflies-logo-crescent-icon.png"
+            alt=""
+            width={512}
+            height={512}
             priority
-            className={`h-20 w-auto transition-[height] duration-300 sm:h-24 ${
-              scrolled ? "lg:h-24" : "lg:h-34"
+            className="h-14 w-auto sm:h-16 lg:hidden"
+          />
+          <Image
+            src="/images/fireflies-logo-crescent.png"
+            alt=""
+            width={815}
+            height={1100}
+            priority
+            className={`hidden w-auto transition-[height] duration-300 lg:block ${
+              scrolled ? "lg:h-24" : "lg:h-32"
             }`}
           />
+          <span className="flex flex-col font-nav uppercase leading-tight text-gold-300 lg:hidden">
+            <span className="text-[17px] tracking-[0.28em] sm:text-[19px]">Fireflies</span>
+            <span className="text-[10px] tracking-[0.32em] text-gold-400 sm:text-[11px]">In the Night</span>
+          </span>
         </Link>
 
         <nav aria-label="Primary" className="hidden lg:block">

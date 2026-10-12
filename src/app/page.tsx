@@ -34,14 +34,8 @@ const releaseSlides: FeaturedSlide[] = [
     : []),
 ];
 
-const memoirSlide: FeaturedSlide = {
-  eyebrow: "Featured Now",
-  title: "Buyahka & Abrar",
-  description:
-    "The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here.",
-  ctaLabel: "Read the memoir",
-  ctaHref: "/sitting-with-buyahka/buyahka-and-abrar",
-};
+// Abrar's Memoir is private (key required), so it is no longer promoted in
+// the Featured Now carousel; it lives in a side panel on Sitting with Buyahka.
 
 const episodeSlide: FeaturedSlide = {
   eyebrow: "New Episode",
@@ -65,8 +59,8 @@ const introSlide: FeaturedSlide = {
 
 const featuredSlides: FeaturedSlide[] =
   currentRelease?.status === "upcoming"
-    ? [...releaseSlides, introSlide, memoirSlide, episodeSlide]
-    : [memoirSlide, ...releaseSlides, introSlide, episodeSlide];
+    ? [...releaseSlides, introSlide, episodeSlide]
+    : [...releaseSlides, introSlide, episodeSlide];
 
 const aboutTeaser = mediumBio[0];
 
@@ -126,12 +120,11 @@ export default function Home() {
             intro="Faith examined honestly — where it's inherited, where it's chosen, and what it produces when it's tested."
           >
             <PieceCallout
-              flagship
-              label="The memoir"
-              title="Buyahka & Abrar"
-              description="The complete Abrar's Memoir — finished, and free to read online."
-              ctaLabel="Read the memoir"
-              ctaHref="/sitting-with-buyahka/buyahka-and-abrar"
+              label="Essay"
+              title="Critical Thinking Did Not Weaken My Faith"
+              description="On questioning belief without losing it."
+              ctaLabel="Read the piece"
+              ctaHref="/sitting-with-buyahka/critical-thinking-did-not-weaken-my-faith"
             />
           </SectionCard>
         </div>

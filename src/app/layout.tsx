@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   description:
     "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.",
   icons: {
-    icon: "/images/fireflies-logo-icon.png",
+    icon: "/images/fireflies-logo-crescent-icon.png",
   },
   openGraph: {
     title: "Fireflies in the Night",
