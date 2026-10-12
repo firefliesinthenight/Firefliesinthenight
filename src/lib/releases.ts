@@ -15,6 +15,8 @@ export type Release = {
   slug: string;
   title: string;
   status: "released" | "upcoming";
+  // "song" releases also appear on /music; "video" (intro, shorts) only on /latest.
+  kind: "song" | "video";
   dateLabel: string;
   youtubeId?: string;
   // Square cover art (in /public). Shown in place of the video slot until a
@@ -31,6 +33,7 @@ export type Release = {
 export const releases: Release[] = [
   {
     slug: "two-cups-of-tea",
+    kind: "song",
     title: "Two Cups of Tea",
     status: "upcoming",
     dateLabel: "New song · Friday, October 16, 2026",
@@ -46,6 +49,7 @@ export const releases: Release[] = [
   },
   {
     slug: "beauty-in-the-fade",
+    kind: "song",
     title: "Beauty in the Fade",
     status: "upcoming",
     dateLabel: "New song · Friday, October 23, 2026",
@@ -54,6 +58,7 @@ export const releases: Release[] = [
   },
   {
     slug: "introduction",
+    kind: "video",
     title: "I've Never Grabbed the Microphone",
     status: "released",
     dateLabel: "Introduction · October 12, 2026",
@@ -64,6 +69,7 @@ export const releases: Release[] = [
   },
   {
     slug: "dim-light-v2",
+    kind: "song",
     title: "Dim Light V2",
     status: "released",
     dateLabel: "October 2026",
@@ -71,3 +77,5 @@ export const releases: Release[] = [
     links: [],
   },
 ];
+
+export const songs = releases.filter((r) => r.kind === "song");

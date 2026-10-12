@@ -27,8 +27,8 @@ const releaseSlides: FeaturedSlide[] = [
             currentRelease.status === "upcoming"
               ? `${currentRelease.dateLabel.replace("New song · ", "Out ")}. Pre-save it now.`
               : "Ahmad's latest release — watch the video now.",
-          ctaLabel: currentRelease.status === "upcoming" ? "Pre-save" : "Watch now",
-          ctaHref: "/latest",
+          ctaLabel: currentRelease.status === "upcoming" ? "Pre-save" : "Listen now",
+          ctaHref: "/music",
         } satisfies FeaturedSlide,
       ]
     : []),
