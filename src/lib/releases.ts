@@ -54,7 +54,12 @@ export const releases: Release[] = [
     status: "upcoming",
     dateLabel: "New song · Friday, October 23, 2026",
     cover: "/images/releases/beauty-in-the-fade.jpg",
-    links: [],
+    links: [
+      {
+        label: "Pre-save on Spotify",
+        href: "https://distrokid.com/hyperfollow/ahmadabrar/beauty-in-the-fade",
+      },
+    ],
   },
   {
     slug: "introduction",
