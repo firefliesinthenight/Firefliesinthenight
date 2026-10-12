@@ -17,11 +17,41 @@ export type Release = {
   status: "released" | "upcoming";
   dateLabel: string;
   youtubeId?: string;
+  // Square cover art (in /public). Shown in place of the video slot until a
+  // youtubeId exists, so an upcoming release isn't an empty box.
+  cover?: string;
   description?: string;
   links: { label: string; href: string }[];
 };
 
+// Two Cups of Tea is listed first on purpose: it's the release launch week
+// is pointing people to, so the homepage spotlight and /latest lead with it.
+// After Oct 16, flip its status to "released", add its youtubeId and the
+// real streaming links, and move Beauty in the Fade to the top the following week.
 export const releases: Release[] = [
+  {
+    slug: "two-cups-of-tea",
+    title: "Two Cups of Tea",
+    status: "upcoming",
+    dateLabel: "New song · Friday, October 16, 2026",
+    cover: "/images/releases/two-cups-of-tea.jpg",
+    description:
+      "The first Fireflies in the Night song. Pre-save it now and it lands in your library the day it comes out.",
+    links: [
+      {
+        label: "Pre-save on Spotify",
+        href: "https://distrokid.com/hyperfollow/ahmadabrar/two-cups-of-tea",
+      },
+    ],
+  },
+  {
+    slug: "beauty-in-the-fade",
+    title: "Beauty in the Fade",
+    status: "upcoming",
+    dateLabel: "New song · Friday, October 23, 2026",
+    cover: "/images/releases/beauty-in-the-fade.jpg",
+    links: [],
+  },
   {
     slug: "dim-light-v2",
     title: "Dim Light V2",

@@ -9,43 +9,55 @@ import FeaturedCarousel, { type FeaturedSlide } from "@/components/FeaturedCarou
 import { releases } from "@/lib/releases";
 
 const heroLine =
-  "Essays, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
+  "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
 
 const currentRelease = releases[0];
 
 // What's happening on the site right now — the homepage's rotating
-// spotlight. Leads with the memoir (the flagship, and what a no-JS/first
-// paint shows), then whatever's newest. Add a slide here for anything else
-// worth surfacing this way (a new essay, a community piece, ...).
-const featuredSlides: FeaturedSlide[] = [
-  {
-    eyebrow: "Featured Now",
-    title: "Buyahka & Abrar",
-    description:
-      "The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here.",
-    ctaLabel: "Read the memoir",
-    ctaHref: "/sitting-with-buyahka/buyahka-and-abrar",
-  },
+// spotlight (the first slide is what a no-JS/first paint shows). Add a slide
+// here for anything else worth surfacing this way (a new essay, ...).
+const releaseSlides: FeaturedSlide[] = [
   ...(currentRelease
     ? [
         {
-          eyebrow: "New Release",
+          eyebrow: currentRelease.status === "upcoming" ? "New Song" : "New Release",
           title: currentRelease.title,
-          description: "Ahmad's latest release — watch the video now.",
-          ctaLabel: "Watch now",
+          description:
+            currentRelease.status === "upcoming"
+              ? `${currentRelease.dateLabel.replace("New song · ", "Out ")}. Pre-save it now.`
+              : "Ahmad's latest release — watch the video now.",
+          ctaLabel: currentRelease.status === "upcoming" ? "Pre-save" : "Watch now",
           ctaHref: "/latest",
         } satisfies FeaturedSlide,
       ]
     : []),
-  {
-    eyebrow: "New Episode",
-    title: "Through the Storms — Episode 03",
-    description:
-      "“Movement Was My Oxygen,” on video — the companion piece to the essay.",
-    ctaLabel: "Watch the episode",
-    ctaHref: "/in-search-of-beauty/movement-was-my-oxygen",
-  },
 ];
+
+const memoirSlide: FeaturedSlide = {
+  eyebrow: "Featured Now",
+  title: "Buyahka & Abrar",
+  description:
+    "The complete Abrar's Memoir — finished, and free to read online. If you start with one thing on this site, start here.",
+  ctaLabel: "Read the memoir",
+  ctaHref: "/sitting-with-buyahka/buyahka-and-abrar",
+};
+
+const episodeSlide: FeaturedSlide = {
+  eyebrow: "New Episode",
+  title: "Through the Storms — Episode 03",
+  description:
+    "“Movement Was My Oxygen,” on video — the companion piece to the essay.",
+  ctaLabel: "Watch the episode",
+  ctaHref: "/in-search-of-beauty/movement-was-my-oxygen",
+};
+
+// While a song is upcoming (launch week), it leads the spotlight — that is
+// what people arriving from social posts are looking for. Otherwise the
+// memoir leads, as before.
+const featuredSlides: FeaturedSlide[] =
+  currentRelease?.status === "upcoming"
+    ? [...releaseSlides, memoirSlide, episodeSlide]
+    : [memoirSlide, ...releaseSlides, episodeSlide];
 
 const aboutTeaser =
   "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
@@ -126,12 +138,14 @@ export default function Home() {
             >
               <div className="border-t border-night-600/50 pt-4 text-sm">
                 <p className="text-cream-200">
-                  <span className="font-semibold text-gold-300">Current release — </span>
+                  <span className="font-semibold text-gold-300">
+                    {currentRelease.status === "upcoming" ? "Coming soon — " : "Current release — "}
+                  </span>
                   {currentRelease.title}
                 </p>
                 <div className="mt-3">
                   <CtaLink href="/latest" variant="outline">
-                    Watch now
+                    {currentRelease.status === "upcoming" ? "Pre-save" : "Watch now"}
                   </CtaLink>
                 </div>
               </div>
