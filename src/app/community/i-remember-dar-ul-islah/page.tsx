@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import BackLink from "@/components/BackLink";
 import EssayBody from "@/components/EssayBody";
 import RespondToPiece from "@/components/RespondToPiece";
+import AuthorNote from "@/components/AuthorNote";
 
 export const metadata: Metadata = {
   title: "I Remember — Dar ul Islah",
@@ -80,6 +81,8 @@ export default function IRememberDarUlIslahPage() {
         </p>
 
         <EssayBody paragraphs={paragraphs} />
+
+        <AuthorNote />
 
         <RespondToPiece title="I Remember — Dar ul Islah" />
       </article>

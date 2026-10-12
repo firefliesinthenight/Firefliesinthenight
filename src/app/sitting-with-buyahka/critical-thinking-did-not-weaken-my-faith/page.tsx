@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import BackLink from "@/components/BackLink";
 import EssayBody from "@/components/EssayBody";
 import RespondToPiece from "@/components/RespondToPiece";
+import AuthorNote from "@/components/AuthorNote";
 
 export const metadata: Metadata = {
   title: "Critical Thinking Did Not Weaken My Faith",
@@ -69,6 +70,8 @@ export default function CriticalThinkingPage() {
         </p>
 
         <EssayBody paragraphs={paragraphs} />
+
+        <AuthorNote />
 
         <RespondToPiece title="Critical Thinking Did Not Weaken My Faith" />
       </article>

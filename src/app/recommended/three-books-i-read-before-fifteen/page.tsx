@@ -3,6 +3,7 @@ import Container from "@/components/Container";
 import BackLink from "@/components/BackLink";
 import EssayBody from "@/components/EssayBody";
 import RespondToPiece from "@/components/RespondToPiece";
+import AuthorNote from "@/components/AuthorNote";
 
 export const metadata: Metadata = {
   title: "Three Books I Read Before Fifteen",
@@ -63,6 +64,8 @@ export default function ThreeBooksPage() {
         </p>
 
         <EssayBody paragraphs={paragraphs} />
+
+        <AuthorNote />
 
         <RespondToPiece title="Three Books I Read Before Fifteen" />
       </article>

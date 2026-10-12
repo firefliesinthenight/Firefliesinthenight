@@ -53,6 +53,16 @@ export const releases: Release[] = [
     links: [],
   },
   {
+    slug: "introduction",
+    title: "I've Never Grabbed the Microphone",
+    status: "released",
+    dateLabel: "Introduction · October 12, 2026",
+    youtubeId: "1g0i20Cd4RY",
+    description:
+      "Ahmad introduces Fireflies in the Night: the unofficial record, his father and the Last Poets, and why he's finally putting his voice out there.",
+    links: [],
+  },
+  {
     slug: "dim-light-v2",
     title: "Dim Light V2",
     status: "released",

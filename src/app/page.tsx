@@ -7,6 +7,7 @@ import CtaLink from "@/components/CtaLink";
 import CompletePoem from "@/components/CompletePoem";
 import FeaturedCarousel, { type FeaturedSlide } from "@/components/FeaturedCarousel";
 import { releases } from "@/lib/releases";
+import { mediumBio } from "@/lib/bios";
 
 const heroLine =
   "Essays, songs, Abrar's Memoir, and the history of one community — written down before it's forgotten.";
@@ -54,13 +55,20 @@ const episodeSlide: FeaturedSlide = {
 // While a song is upcoming (launch week), it leads the spotlight — that is
 // what people arriving from social posts are looking for. Otherwise the
 // memoir leads, as before.
+const introSlide: FeaturedSlide = {
+  eyebrow: "Start Here",
+  title: "I've Never Grabbed the Microphone",
+  description: "Ahmad introduces Fireflies in the Night: the unofficial record, the Last Poets, and why now.",
+  ctaLabel: "Watch the introduction",
+  ctaHref: "/latest",
+};
+
 const featuredSlides: FeaturedSlide[] =
   currentRelease?.status === "upcoming"
-    ? [...releaseSlides, memoirSlide, episodeSlide]
-    : [memoirSlide, ...releaseSlides, episodeSlide];
+    ? [...releaseSlides, introSlide, memoirSlide, episodeSlide]
+    : [memoirSlide, ...releaseSlides, introSlide, episodeSlide];
 
-const aboutTeaser =
-  "Fireflies in the Night is the intellectual and creative home for Ahmad's writing — a builder, husband, father, grandfather, and community participant, using one imperfect life as evidence, not as proof of authority.";
+const aboutTeaser = mediumBio[0];
 
 export default function Home() {
   return (
