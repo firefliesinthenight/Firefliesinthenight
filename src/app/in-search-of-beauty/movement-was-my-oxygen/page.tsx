@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Container from "@/components/Container";
 import BackLink from "@/components/BackLink";
 import RespondToPiece from "@/components/RespondToPiece";
+import AuthorNote from "@/components/AuthorNote";
 import EpisodeVideo from "@/components/EpisodeVideo";
 
 export const metadata: Metadata = {
@@ -145,6 +146,8 @@ export default function MovementWasMyOxygenPage() {
             <p key={i}>{paragraph}</p>
           ))}
         </div>
+
+        <AuthorNote />
 
         <RespondToPiece title="Movement Was My Oxygen" />
       </article>

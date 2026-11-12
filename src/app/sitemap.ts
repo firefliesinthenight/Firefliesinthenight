@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
 import { chapters } from "@/lib/memoir";
 
-const baseUrl = "https://fireflies-in-the-night.vercel.app";
+const baseUrl = "https://firefliesinthenight.com";
 
 const routes = [
   "",
   "/latest",
+  "/music",
   "/in-search-of-beauty",
   "/in-search-of-beauty/movement-was-my-oxygen",
   "/sitting-with-buyahka",

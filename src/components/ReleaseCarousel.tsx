@@ -26,6 +26,22 @@ export default function ReleaseCarousel({ releases }: { releases: Release[] }) {
       <div className="mt-5">
         {active.youtubeId ? (
           <YouTubeEmbed youtubeId={active.youtubeId} title={active.title} />
+        ) : active.cover ? (
+          <div className="relative flex aspect-video items-center justify-center overflow-hidden rounded-xl border border-night-600/50 bg-night-950/60">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={active.cover}
+              alt=""
+              aria-hidden="true"
+              className="absolute inset-0 h-full w-full scale-110 object-cover opacity-40 blur-2xl"
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={active.cover}
+              alt={`${active.title} cover art`}
+              className="relative h-full w-auto object-contain"
+            />
+          </div>
         ) : (
           <div className="flex aspect-video items-center justify-center rounded-xl border border-night-600/50 bg-night-950/60">
             <p className="font-body text-sm italic text-cream-300/60">Coming soon.</p>
@@ -67,6 +83,9 @@ export default function ReleaseCarousel({ releases }: { releases: Release[] }) {
                     alt=""
                     className="h-full w-full object-cover"
                   />
+                ) : release.cover ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={release.cover} alt="" className="h-full w-full object-cover" />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center">
                     <span className="font-body text-[10px] uppercase tracking-[0.15em] text-cream-300/50">
