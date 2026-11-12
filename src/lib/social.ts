@@ -4,5 +4,5 @@ export const socialLinks: { label: string; href: string }[] = [
   { label: "YouTube", href: "https://www.youtube.com/channel/UCb12ZAvzxeAjBxC7slBAycA" },
   { label: "Facebook", href: "https://www.facebook.com/1416147041575664" },
   { label: "Instagram", href: "https://www.instagram.com/firefliesinthenight2/" },
-  { label: "TikTok", href: "https://www.tiktok.com/@ahmadabrarkoshul" },
+  { label: "TikTok", href: "https://www.tiktok.com/@firefliesbyahmad" },
 ];
